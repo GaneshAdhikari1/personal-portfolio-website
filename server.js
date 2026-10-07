@@ -202,7 +202,7 @@ function route(pathname) {
   return [404, notFoundPage()];
 }
 
-const server = http.createServer(async (req,res) => {
+async function handler(req,res) {
   const parsed = new URL(req.url, SITE_URL); const pathname = parsed.pathname !== "/" ? parsed.pathname.replace(/\/$/,"") : "/";
   res.setHeader("x-frame-options","SAMEORIGIN"); res.setHeader("referrer-policy","strict-origin-when-cross-origin"); res.setHeader("permissions-policy","camera=(), microphone=(), geolocation=()");
   if (req.method !== "GET" && req.method !== "HEAD") { res.writeHead(405,{allow:"GET, HEAD"}); return res.end("Method not allowed"); }
@@ -210,7 +210,9 @@ const server = http.createServer(async (req,res) => {
   if (pathname === "/sitemap.xml") { const paths=["/","/about","/services","/case-studies","/contact","/resources","/privacy",...services.map(s=>`/services/${s.slug}`),...caseStudies.map(c=>`/case-studies/${c.slug}`),...articles.map(a=>`/resources/${a.slug}`)]; res.writeHead(200,{"content-type":"application/xml; charset=utf-8"}); return res.end(`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.map(p=>`<url><loc>${esc(url(p))}</loc></url>`).join("")}</urlset>`); }
   if (pathname.startsWith("/assets/") || pathname === "/styles.css" || pathname === "/app.js") { if (serveStatic(pathname.slice(1),res)) return; }
   const [status,html]=route(pathname); res.writeHead(status,{"content-type":"text/html; charset=utf-8","cache-control":"no-cache","x-content-type-options":"nosniff"}); if(req.method==="HEAD") return res.end(); res.end(html);
-});
+}
+
+const server = http.createServer(handler);
 
 if (require.main === module) server.listen(PORT,"127.0.0.1",()=>console.log(`Digital Ganesh running at ${SITE_URL}`));
-module.exports = { server, route };
+module.exports = { handler, server, route };
