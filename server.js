@@ -4,7 +4,8 @@ const path = require("node:path");
 const { services, articles, caseStudies } = require("./src/content");
 
 const PORT = Number(process.env.PORT || 3000);
-const SITE_URL = (process.env.SITE_URL || `http://localhost:${PORT}`).replace(/\/$/, "");
+const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+const SITE_URL = (process.env.SITE_URL || (vercelHost ? `https://${vercelHost}` : `http://localhost:${PORT}`)).replace(/\/$/, "");
 const PUBLIC = path.join(__dirname, "public");
 const email = "aimarketingwithganesh@gmail.com";
 const whatsapp = "https://wa.me/9779769208749";
