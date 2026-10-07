@@ -1,0 +1,5 @@
+.env
+data/submissions.ndjson
+node_modules/
+npm-debug.log*
+

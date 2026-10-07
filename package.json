@@ -1,0 +1,14 @@
+{
+  "name": "digital-ganesh-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Professional portfolio website for Digital Ganesh",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js",
+    "check": "node scripts/check.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
