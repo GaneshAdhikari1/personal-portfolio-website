@@ -92,15 +92,16 @@
     const showErrors = (errors = {}) => Object.entries(errors).forEach(([name,message]) => { const field=form.elements[name]; if(!field) return; field.setAttribute("aria-invalid","true"); const slot=field.closest("label")?.querySelector(".field-error"); if(slot) slot.textContent=message; });
     form.addEventListener("submit", async (event) => {
       event.preventDefault(); clearErrors(); status.className="form-status"; status.textContent="";
-      const data=Object.fromEntries(new FormData(form).entries());
       if (!form.checkValidity()) { form.querySelectorAll(":invalid").forEach((field)=>{ field.setAttribute("aria-invalid","true"); const slot=field.closest("label")?.querySelector(".field-error"); if(slot) slot.textContent=field.validationMessage; }); const first=form.querySelector(":invalid"); status.classList.add("error"); status.textContent="Please check the highlighted fields."; status.focus(); first?.focus(); return; }
       button.disabled=true; button.classList.add("loading");
       try {
-        const response=await fetch(form.action,{method:"POST",headers:{"content-type":"application/json","accept":"application/json"},body:JSON.stringify(data)});
+        form.elements._url.value=window.location.href.split("#")[0];
+        const data=Object.fromEntries(new FormData(form).entries());
+        const response=await fetch(form.dataset.ajaxAction,{method:"POST",headers:{"content-type":"application/json","accept":"application/json"},body:JSON.stringify(data)});
         const result=await response.json();
-        if(!response.ok || result.success === false || result.success === "false") { showErrors(result.errors); throw new Error(result.message || "The request could not be accepted."); }
-        status.classList.add("success"); status.textContent="Thank you—your consultation request was sent. I’ll review it and reply by email."; form.reset();
-      } catch (error) { status.classList.add("error"); status.textContent=error.message || "Something went wrong. Please retry."; }
+        if(!response.ok || (result.success !== true && result.success !== "true")) { showErrors(result.errors); throw new Error(result.message || "The request could not be accepted."); }
+        status.classList.add("success"); status.textContent="Thank you—your consultation request was submitted. I’ll reply by email once it reaches my inbox."; form.reset();
+      } catch (error) { status.classList.add("error"); status.textContent=`${error.message || "Something went wrong."} Please retry or email aimarketingwithganesh@gmail.com directly.`; }
       finally { button.disabled=false; button.classList.remove("loading"); status.focus(); }
     });
   }

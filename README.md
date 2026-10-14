@@ -27,7 +27,7 @@ Open `http://localhost:3000/blog`. `npm start` builds the Blog bundles, then sta
 
 ## Newsletter and consultation submissions
 
-Both forms send to FormSubmit's AJAX endpoint for `aimarketingwithganesh@gmail.com`. Newsletter signup requires an explicit consent checkbox and sends a request to the inbox; there is **no automated mailing list yet**. Handle subscribers and opt-outs manually until a mailing-list service is connected. FormSubmit may send a one-time activation email after the first submission; confirm it before relying on live delivery. The Privacy page describes this flow.
+Both forms submit to FormSubmit for `aimarketingwithganesh@gmail.com`. The consultation form uses the AJAX endpoint when JavaScript runs and falls back to a standard FormSubmit POST otherwise; its `_url` field identifies the live contact page. Newsletter signup requires an explicit consent checkbox and sends a request to the inbox; there is **no automated mailing list yet**. Handle subscribers and opt-outs manually until a mailing-list service is connected. FormSubmit may send a one-time activation email after the first submission; **click its confirmation link in the recipient inbox before relying on live delivery**, and check spam if it does not appear. The Privacy page describes this flow.
 
 ## Deployment
 
