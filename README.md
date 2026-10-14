@@ -1,43 +1,34 @@
-# Digital Ganesh Portfolio
+# Digital Ganesh Website
 
-A dependency-free, server-rendered Node.js portfolio for Ganesh Adhikari. It includes real routes for services, resources, case studies, contact, privacy, and a helpful 404 page.
+A server-rendered Node.js marketing website with React/Tailwind Blog pages. The Blog replaces the former Case Studies and Resources sections; legacy URLs redirect to `/blog` or their matching article.
 
 ## Run locally
 
-Node.js 20 or newer is the only requirement.
+Requires Node.js 20 or newer.
 
 ```powershell
-node server.js
+npm install
+npm start
 ```
 
-Open `http://localhost:3000`.
+Open `http://localhost:3000/blog`. `npm start` builds the Blog bundles, then starts the server. After changing files in `src/blog/`, run `npm run build` and restart `node server.js`. Run the checks with `npm run check`.
 
-Run the automated checks with:
+## Content and design
 
-```powershell
-node scripts/check.js
-```
+- Service and article bodies: `src/content.js`
+- Blog order, excerpts, dates, and cover paths: `src/blog/data.js`
+- Blog React components and interactions: `src/blog/components.jsx`
+- Blog styles: `src/blog/blog.css` (Tailwind plus scoped editorial rules)
+- Generated Blog covers: `public/assets/blog/*.webp`
+- Shared layout, navigation, routes, homepage, contact, and privacy: `server.js`
+- Existing site styles and interactions: `public/styles.css` and `public/app.js`
 
-## Content editing
+`npm run build` compiles `dist/blog-server.cjs`, `public/blog.js`, and `public/blog.css`. These built files are included so direct `node server.js` also works in a checked-out project.
 
-- Service, article, and case-study content: `src/content.js`
-- Biography, homepage, contact, and privacy copy: `server.js`
-- Design system and responsive layouts: `public/styles.css`
-- Interactions and form UX: `public/app.js`
-- Current primary logo: `public/assets/digital-ganesh-logo-2026.png` (with earlier SVG variants retained in the asset library)
-- Active retouched portraits: `public/assets/ganesh-hero-retouched.webp` and `public/assets/ganesh-about-retouched.webp`
+## Newsletter and consultation submissions
 
-## Consultation submissions
-
-The form submits to FormSubmit's AJAX endpoint for `aimarketingwithganesh@gmail.com`. Browser validation, an invisible honeypot, inline loading feedback, and success/error messages are included. FormSubmit formats each consultation request as a table and emails it to that inbox.
-
-FormSubmit sends a one-time activation email after the first submission. Open that email and confirm the form before live submissions can be delivered.
+Both forms send to FormSubmit's AJAX endpoint for `aimarketingwithganesh@gmail.com`. Newsletter signup requires an explicit consent checkbox and sends a request to the inbox; there is **no automated mailing list yet**. Handle subscribers and opt-outs manually until a mailing-list service is connected. FormSubmit may send a one-time activation email after the first submission; confirm it before relying on live delivery. The Privacy page describes this flow.
 
 ## Deployment
 
-Deploy to any Node.js 20+ host with a persistent filesystem, using `node server.js` as the start command. Set:
-
-- `SITE_URL` to the final `https://` domain for canonical links, social metadata, robots, and the sitemap.
-- `PORT` if the host does not inject it automatically.
-
-Before launch, replace the profile placeholder, add verified biography/experience details, confirm the privacy notice, and replace the illustrative case studies when authenticated client work is available.
+Deploy to a Node.js 20+ host with `npm start` as the start command. Set `SITE_URL` to the final HTTPS domain and `PORT` if your host does not supply one. Before launch, verify the privacy and retention language, activate FormSubmit, and replace the publication/migration dates if you have the original article dates.

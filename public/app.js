@@ -1,5 +1,23 @@
 (() => {
   const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const clock = document.querySelector(".live-clock");
+  if (clock) {
+    const timeElement = clock.querySelector("[data-live-time]");
+    const dateElement = clock.querySelector("[data-live-date]");
+    const timeFormatter = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", second: "2-digit", hourCycle: "h23" });
+    const dateFormatter = new Intl.DateTimeFormat("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+    const renderClock = () => {
+      const now = new Date();
+      timeElement.textContent = timeFormatter.format(now);
+      timeElement.dateTime = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}:${String(now.getSeconds()).padStart(2, "0")}`;
+      dateElement.textContent = dateFormatter.format(now);
+      dateElement.dateTime = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+    };
+    renderClock();
+    setInterval(renderClock, 1000);
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) renderClock(); });
+  }
+
   const progress = document.querySelector(".scroll-progress span");
   if (progress) {
     let ticking = false;
