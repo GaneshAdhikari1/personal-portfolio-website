@@ -88,13 +88,6 @@
   if (form) {
     const status = document.querySelector("#form-status");
     const button = form.querySelector("button[type=submit]");
-    const query = new URLSearchParams(window.location.search);
-    if (query.get("submitted") === "1") {
-      status.className = "form-status success";
-      status.textContent = "Thank you—your consultation request was submitted. I’ll reply by email once it reaches my inbox.";
-      history.replaceState(null, "", `${window.location.pathname}${window.location.hash || "#book"}`);
-      status.focus();
-    }
     const clearErrors = () => { form.querySelectorAll(".field-error").forEach((x)=>x.textContent=""); form.querySelectorAll("[aria-invalid]").forEach((x)=>x.removeAttribute("aria-invalid")); };
     const showErrors = (errors = {}) => Object.entries(errors).forEach(([name,message]) => { const field=form.elements[name]; if(!field) return; field.setAttribute("aria-invalid","true"); const slot=field.closest("label")?.querySelector(".field-error"); if(slot) slot.textContent=message; });
     form.addEventListener("submit", async (event) => {
@@ -102,12 +95,13 @@
       if (!form.checkValidity()) { form.querySelectorAll(":invalid").forEach((field)=>{ field.setAttribute("aria-invalid","true"); const slot=field.closest("label")?.querySelector(".field-error"); if(slot) slot.textContent=field.validationMessage; }); const first=form.querySelector(":invalid"); status.classList.add("error"); status.textContent="Please check the highlighted fields."; status.focus(); first?.focus(); return; }
       button.disabled=true; button.classList.add("loading");
       try {
-        form.elements._url.value=window.location.href.split("#")[0];
+        const sourceField=form.querySelector('[name="_url"]');
+        if(sourceField) sourceField.value=window.location.href.split("#")[0];
         const data=Object.fromEntries(new FormData(form).entries());
         const response=await fetch(form.dataset.ajaxAction,{method:"POST",headers:{"content-type":"application/json","accept":"application/json"},body:JSON.stringify(data)});
         const result=await response.json();
         if(!response.ok || (result.success !== true && result.success !== "true")) { showErrors(result.errors); throw new Error(result.message || "The request could not be accepted."); }
-        status.classList.add("success"); status.textContent="Thank you—your consultation request was submitted. I’ll reply by email once it reaches my inbox."; form.reset();
+        form.reset(); window.location.assign("/");
       } catch (error) { status.classList.add("error"); status.textContent=`${error.message || "Something went wrong."} Please retry or email aimarketingwithganesh@gmail.com directly.`; }
       finally { button.disabled=false; button.classList.remove("loading"); status.focus(); }
     });
