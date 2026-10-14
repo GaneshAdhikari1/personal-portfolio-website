@@ -88,6 +88,13 @@
   if (form) {
     const status = document.querySelector("#form-status");
     const button = form.querySelector("button[type=submit]");
+    const query = new URLSearchParams(window.location.search);
+    if (query.get("submitted") === "1") {
+      status.className = "form-status success";
+      status.textContent = "Thank you—your consultation request was submitted. I’ll reply by email once it reaches my inbox.";
+      history.replaceState(null, "", `${window.location.pathname}${window.location.hash || "#book"}`);
+      status.focus();
+    }
     const clearErrors = () => { form.querySelectorAll(".field-error").forEach((x)=>x.textContent=""); form.querySelectorAll("[aria-invalid]").forEach((x)=>x.removeAttribute("aria-invalid")); };
     const showErrors = (errors = {}) => Object.entries(errors).forEach(([name,message]) => { const field=form.elements[name]; if(!field) return; field.setAttribute("aria-invalid","true"); const slot=field.closest("label")?.querySelector(".field-error"); if(slot) slot.textContent=message; });
     form.addEventListener("submit", async (event) => {
