@@ -88,6 +88,21 @@
   if (form) {
     const status = document.querySelector("#form-status");
     const button = form.querySelector("button[type=submit]");
+    const confirmation = document.createElement("section");
+    confirmation.className = "form-confirmation";
+    confirmation.hidden = true;
+    confirmation.tabIndex = -1;
+    confirmation.setAttribute("aria-labelledby", "form-confirmation-title");
+    confirmation.innerHTML = '<span class="form-confirmation-icon" aria-hidden="true">✓</span><p class="eyebrow">Request received</p><h2 id="form-confirmation-title">Thanks—your information has been received.</h2><p>Your consultation request was submitted successfully. I’ll review the details you shared and follow up by email.</p><button class="button button-ghost" type="button">Send another inquiry</button>';
+    form.insertAdjacentElement("afterend", confirmation);
+    const showConfirmation = () => { form.hidden=true; confirmation.hidden=false; confirmation.focus(); };
+    const showForm = () => { confirmation.hidden=true; form.hidden=false; status.className="form-status"; status.textContent=""; form.querySelector('[name="name"]')?.focus(); };
+    confirmation.querySelector("button").addEventListener("click", showForm);
+    const query = new URLSearchParams(window.location.search);
+    if(query.get("submitted") === "1") {
+      history.replaceState(null,"",`${window.location.pathname}${window.location.hash || "#book"}`);
+      showConfirmation();
+    }
     const clearErrors = () => { form.querySelectorAll(".field-error").forEach((x)=>x.textContent=""); form.querySelectorAll("[aria-invalid]").forEach((x)=>x.removeAttribute("aria-invalid")); };
     const showErrors = (errors = {}) => Object.entries(errors).forEach(([name,message]) => { const field=form.elements[name]; if(!field) return; field.setAttribute("aria-invalid","true"); const slot=field.closest("label")?.querySelector(".field-error"); if(slot) slot.textContent=message; });
     form.addEventListener("submit", async (event) => {
@@ -101,7 +116,7 @@
         const response=await fetch(form.dataset.ajaxAction,{method:"POST",headers:{"content-type":"application/json","accept":"application/json"},body:JSON.stringify(data)});
         const result=await response.json();
         if(!response.ok || (result.success !== true && result.success !== "true")) { showErrors(result.errors); throw new Error(result.message || "The request could not be accepted."); }
-        form.reset(); window.location.assign("/");
+        form.reset(); showConfirmation();
       } catch (error) { status.classList.add("error"); status.textContent=`${error.message || "Something went wrong."} Please retry or email aimarketingwithganesh@gmail.com directly.`; }
       finally { button.disabled=false; button.classList.remove("loading"); status.focus(); }
     });

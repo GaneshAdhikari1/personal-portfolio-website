@@ -46,7 +46,7 @@ const [, contactHtml] = route("/contact");
 assert.match(contactHtml, /action="https:\/\/formsubmit\.co\/aimarketingwithganesh@gmail\.com"/);
 assert.match(contactHtml, /data-ajax-action="https:\/\/formsubmit\.co\/ajax\/aimarketingwithganesh@gmail\.com"/);
 assert.match(contactHtml, /name="_url" value="https:\/\/ganeshadhikari1\.com\.np\/contact"/);
-assert.match(contactHtml, /name="_next" value="https:\/\/ganeshadhikari1\.com\.np\/"/);
+assert.match(contactHtml, /name="_next" value="https:\/\/ganeshadhikari1\.com\.np\/contact\?submitted=1#book"/);
 assert.match(contactHtml, /name="_honey"/);
 const [, privacyHtml] = route("/privacy");
 assert.match(privacyHtml, /newsletter signup requests/);

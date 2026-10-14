@@ -86,3 +86,12 @@ html,body{max-width:100%;overflow-x:hidden}
 .live-clock__time,.live-clock__date{display:block}.live-clock__time{color:#fff;font-family:"Manrope",system-ui,sans-serif;font-size:1.22rem;font-weight:700;letter-spacing:.04em;font-variant-numeric:tabular-nums;line-height:1.2}.live-clock__date{color:#c2d2cc;font-size:.8rem;line-height:1.45}
 .site-footer .footer-bottom>p{margin:0;color:#9eb3aa;white-space:nowrap}
 @media(max-width:700px){.site-footer .footer-bottom{align-items:flex-start;flex-direction:column}.site-footer .live-clock{width:100%}}
+
+/* Contact form success state. */
+.form-confirmation{min-height:520px;padding:54px 46px;border:1px solid #cfe0d5;border-radius:var(--radius);background:linear-gradient(145deg,#fbfff7 0%,#eef6ec 100%);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.form-confirmation[hidden]{display:none}
+.form-confirmation-icon{display:grid;place-items:center;width:58px;height:58px;margin-bottom:25px;border-radius:50%;background:var(--lime);color:var(--ink);font-size:1.75rem;font-weight:900;box-shadow:0 12px 28px rgba(36,96,71,.16)}
+.form-confirmation h2{max-width:540px;margin:8px 0 16px;font-size:clamp(2rem,4vw,3rem);line-height:1.08}
+.form-confirmation>p:not(.eyebrow){max-width:550px;margin:0 0 30px;color:var(--muted);font-size:1.05rem;line-height:1.75}
+.form-confirmation .button{width:auto}
+@media(max-width:600px){.form-confirmation{min-height:430px;padding:38px 24px}.form-confirmation h2{font-size:2rem}}
