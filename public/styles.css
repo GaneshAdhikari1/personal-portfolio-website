@@ -95,3 +95,33 @@ html,body{max-width:100%;overflow-x:hidden}
 .form-confirmation>p:not(.eyebrow){max-width:550px;margin:0 0 30px;color:var(--muted);font-size:1.05rem;line-height:1.75}
 .form-confirmation .button{width:auto}
 @media(max-width:600px){.form-confirmation{min-height:430px;padding:38px 24px}.form-confirmation h2{font-size:2rem}}
+
+/* Cinematic glass-wave homepage hero. */
+.hero-v2{display:flex;align-items:center;min-height:clamp(680px,calc(100svh - 84px),900px);padding:88px 0 92px;isolation:isolate;background:#020b1c;color:#fff}
+.hero-v2:before{content:"";position:absolute;z-index:-2;inset:-4%;opacity:1;pointer-events:none;background-image:url("/assets/hero-glass-wave-v1.png");background-repeat:no-repeat;background-position:center;background-size:cover;mask-image:none;transform:scale(1.04);transform-origin:center;will-change:transform;animation:hero-wave-drift 16s ease-in-out infinite alternate}
+.hero-v2:after{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(1,8,25,.98) 0%,rgba(2,12,35,.94) 31%,rgba(3,18,51,.68) 55%,rgba(1,9,29,.16) 82%),linear-gradient(180deg,rgba(0,7,23,.18),transparent 50%,rgba(0,7,23,.46))}
+.hero-grid-v2{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,790px);align-items:center;justify-content:start;gap:0;min-height:0}
+.hero-copy-v2{max-width:790px;padding:0}
+.hero-copy-v2 .eyebrow{color:#a9d4ff;text-shadow:0 1px 14px rgba(0,0,0,.35)}
+.hero-copy-v2 .eyebrow>span{background:#42a5ff;box-shadow:0 0 18px rgba(66,165,255,.95)}
+.hero-copy-v2 h1{max-width:780px;margin-bottom:28px;font-size:clamp(3.65rem,6.2vw,5.7rem);line-height:.98;text-wrap:balance;text-shadow:0 4px 30px rgba(0,4,18,.55)}
+.hero-copy-v2 h1 span{color:#fff}
+.hero-copy-v2 h1 em{width:auto;color:#69b8ff;background:linear-gradient(90deg,#79c6ff,#3f91ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-copy-v2 h1 em:after{display:none}
+.hero-copy-v2 .lede{max-width:650px;color:#c5d2e7;font-size:1.18rem;line-height:1.68;text-shadow:0 2px 18px rgba(0,6,22,.6)}
+.hero-copy-v2 .button-row{align-items:center;margin-top:34px}
+.hero-primary-cta{min-height:56px;padding-inline:27px;border-color:#338ef0;background:linear-gradient(135deg,#278bea,#1765d8);box-shadow:0 14px 34px rgba(20,111,226,.36)}
+.hero-primary-cta:hover{border-color:#62b2ff;background:linear-gradient(135deg,#3ba4ff,#2676e4);box-shadow:0 17px 38px rgba(29,126,243,.46)}
+.hero-secondary-link{display:inline-flex;align-items:center;gap:8px;padding:12px 7px;color:#edf6ff;font-weight:800;text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.hero-secondary-link:hover{color:#82c8ff}
+.hero-secondary-link svg{width:18px;transition:transform .2s}
+.hero-secondary-link:hover svg{transform:translateX(4px)}
+.hero-credibility{display:grid;grid-template-columns:repeat(3,1fr);max-width:730px;gap:0;margin-top:42px;padding:22px 24px;border:1px solid rgba(131,190,255,.2);border-radius:18px;background:linear-gradient(125deg,rgba(12,38,78,.48),rgba(5,20,52,.25));box-shadow:0 22px 60px rgba(0,5,18,.26);backdrop-filter:blur(14px)}
+.hero-credibility div{padding:0 19px;border-left:1px solid rgba(146,196,255,.2)}
+.hero-credibility div:first-child{padding-left:0;border-left:0}
+.hero-credibility strong{color:#fff;font-size:.82rem}
+.hero-credibility span{margin-top:4px;color:#aebed6;font-size:.72rem;line-height:1.4}
+@keyframes hero-wave-drift{0%{transform:scale(1.04) translate3d(-.35%,0,0)}100%{transform:scale(1.075) translate3d(.55%,-.65%,0)}}
+@media(max-width:900px){.hero-v2{min-height:720px;padding:82px 0 76px}.hero-v2:before{background-position:62% center}.hero-v2:after{background:linear-gradient(90deg,rgba(1,8,25,.98) 0%,rgba(2,12,35,.9) 57%,rgba(1,9,29,.34) 100%),linear-gradient(180deg,rgba(0,7,23,.12),transparent 42%,rgba(0,7,23,.56))}.hero-grid-v2{grid-template-columns:minmax(0,760px)}}
+@media(max-width:620px){.hero-v2{min-height:auto;padding:72px 0 62px}.hero-v2:before{inset:-2%;background-position:66% center;transform:scale(1.08)}.hero-v2:after{background:linear-gradient(90deg,rgba(1,8,25,.97),rgba(2,13,36,.84)),linear-gradient(180deg,transparent 55%,rgba(0,7,23,.7))}.hero-copy-v2 h1{font-size:clamp(2.7rem,12vw,3.5rem);line-height:1.01}.hero-copy-v2 .lede{font-size:1.04rem}.hero-credibility{grid-template-columns:1fr;gap:13px;padding:19px}.hero-credibility div,.hero-credibility div:first-child{padding:0;border:0}.hero-credibility span{display:inline;margin-left:5px}}
+@media(prefers-reduced-motion:reduce){.hero-v2:before{animation:none!important;transform:scale(1.04)!important}}
