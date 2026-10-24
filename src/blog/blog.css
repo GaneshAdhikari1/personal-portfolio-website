@@ -7,9 +7,9 @@
 #blog-root .blog-category{display:inline-flex;align-self:flex-start;width:max-content}
 #blog-root h1,#blog-root h2,#blog-root h3{max-width:none;margin-bottom:0}
 #blog-root p{margin-bottom:0}
-#blog-root .blog-prose .article-lead{font-family:"Playfair Display",Georgia,serif;font-size:clamp(1.4rem,2.1vw,1.7rem);line-height:1.65;color:#244534;margin-bottom:2.3rem}
+#blog-root .blog-prose .article-lead{font-family:"Playfair Display",Georgia,serif;font-size:clamp(1.4rem,2.1vw,1.7rem);line-height:1.65;color:#173b5d;margin-bottom:2.3rem}
 #blog-root .blog-prose section{margin:0 0 2.8rem}
-#blog-root .blog-prose section h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(1.75rem,2.6vw,2.2rem);line-height:1.25;color:#203d2c;margin-bottom:1rem}
-#blog-root .blog-prose section p{font-size:1.08rem;line-height:1.9;color:#4d5c52}
+#blog-root .blog-prose section h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(1.75rem,2.6vw,2.2rem);line-height:1.25;color:#102f50;margin-bottom:1rem}
+#blog-root .blog-prose section p{font-size:1.08rem;line-height:1.9;color:#526a82}
 #blog-root .newsletter-card h2{font-size:28px}
 @media(max-width:640px){#blog-root .blog-prose section p{font-size:1rem}#blog-root .newsletter-card button{width:100%}}

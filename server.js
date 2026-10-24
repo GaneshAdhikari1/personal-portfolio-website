@@ -62,8 +62,8 @@ function layout({ title, description, pathName, body, schema = {}, blog = false,
     <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
     <title>${esc(fullTitle)}</title><meta name="description" content="${esc(description)}">
     <link rel="canonical" href="${esc(canonical)}"><meta property="og:title" content="${esc(fullTitle)}"><meta property="og:description" content="${esc(description)}"><meta property="og:type" content="${blog && pathName !== "/blog" ? "article" : "website"}"><meta property="og:url" content="${esc(canonical)}"><meta property="og:image" content="${url(image || "/assets/social-card.svg")}">
-    <meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#12372a">
-    <link rel="icon" href="/assets/digital-ganesh-logo-2026.png" type="image/png">${blog ? '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/blog.css?v=2">' : ""}<link rel="stylesheet" href="/styles.css?v=15">
+    <meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#061a33">
+    <link rel="icon" href="/assets/digital-ganesh-logo-2026.png" type="image/png">${blog ? '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/blog.css?v=3">' : ""}<link rel="stylesheet" href="/styles.css?v=16">
     <script type="application/ld+json">${JSON.stringify(combinedSchema).replace(/</g, "\\u003c")}</script><script src="/app.js?v=15" defer></script>${blog ? '<script src="/blog.js?v=2" defer></script>' : ""}
   </head><body>
     <a class="skip-link" href="#main">Skip to content</a><div class="scroll-progress" aria-hidden="true"><span></span></div>
