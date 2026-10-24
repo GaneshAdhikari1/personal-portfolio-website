@@ -125,3 +125,17 @@ html,body{max-width:100%;overflow-x:hidden}
 @media(max-width:900px){.hero-v2{min-height:720px;padding:82px 0 76px}.hero-v2:before{background-position:62% center}.hero-v2:after{background:linear-gradient(90deg,rgba(1,8,25,.98) 0%,rgba(2,12,35,.9) 57%,rgba(1,9,29,.34) 100%),linear-gradient(180deg,rgba(0,7,23,.12),transparent 42%,rgba(0,7,23,.56))}.hero-grid-v2{grid-template-columns:minmax(0,760px)}}
 @media(max-width:620px){.hero-v2{min-height:auto;padding:72px 0 62px}.hero-v2:before{inset:-2%;background-position:66% center;transform:scale(1.08)}.hero-v2:after{background:linear-gradient(90deg,rgba(1,8,25,.97),rgba(2,13,36,.84)),linear-gradient(180deg,transparent 55%,rgba(0,7,23,.7))}.hero-copy-v2 h1{font-size:clamp(2.7rem,12vw,3.5rem);line-height:1.01}.hero-copy-v2 .lede{font-size:1.04rem}.hero-credibility{grid-template-columns:1fr;gap:13px;padding:19px}.hero-credibility div,.hero-credibility div:first-child{padding:0;border:0}.hero-credibility span{display:inline;margin-left:5px}}
 @media(prefers-reduced-motion:reduce){.hero-v2:before{animation:none!important;transform:scale(1.04)!important}}
+
+/* Keep the illustrative growth graph alongside the glass-wave artwork. */
+.hero-grid-v2{grid-template-columns:minmax(0,.98fr) minmax(470px,1.02fr);gap:46px}
+.hero-copy-v2 h1{max-width:640px;font-size:clamp(3.2rem,4.7vw,4.55rem)}
+.hero-copy-v2 .lede{max-width:570px}
+.hero-credibility{max-width:620px;margin-top:34px;padding:18px 20px}
+.hero-dashboard{width:100%;max-width:575px;justify-self:end;align-self:center;color:var(--ink)}
+.hero-dashboard:before{inset:7% -5% -8% 8%;background:rgba(38,133,238,.26);filter:blur(32px)}
+.hero-dashboard .dashboard-shell{border-color:rgba(185,216,244,.7);background:rgba(255,255,255,.94);box-shadow:0 30px 80px rgba(0,7,28,.42);backdrop-filter:blur(18px)}
+.hero-dashboard .dashboard-topbar,.hero-dashboard .dashboard-footer{background:rgba(249,252,255,.9)}
+.hero-dashboard .dashboard-chart{background:linear-gradient(145deg,#0c243f,#12372a)}
+.hero-dashboard .chart-bars i{background:linear-gradient(180deg,#7bc4ff,#5c9bf1 48%,#77bea2)}
+@media(max-width:1100px){.hero-v2{min-height:auto;padding:82px 0}.hero-grid-v2{grid-template-columns:1fr;gap:50px}.hero-copy-v2{max-width:790px}.hero-copy-v2 h1{max-width:780px;font-size:clamp(3.45rem,7vw,5rem)}.hero-copy-v2 .lede{max-width:680px}.hero-credibility{max-width:730px}.hero-dashboard{width:min(680px,100%);max-width:none;justify-self:center;margin:0}}
+@media(max-width:620px){.hero-grid-v2{gap:38px}.hero-copy-v2 h1{font-size:clamp(2.65rem,11vw,3.45rem)}.hero-dashboard .dashboard-shell{border-radius:20px}.hero-dashboard .dashboard-topbar{padding:13px 14px}.hero-dashboard .dashboard-status{font-size:.61rem}.hero-dashboard .dashboard-content{padding:18px}.hero-dashboard .dashboard-content h2{margin-bottom:18px;font-size:1.32rem}.hero-dashboard .dashboard-metrics{grid-template-columns:1fr}.hero-dashboard .dashboard-chart{padding:15px}.hero-dashboard .dashboard-channels{display:grid;grid-template-columns:1fr 1fr}.hero-dashboard .dashboard-footer{padding:13px 15px}}
